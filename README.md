@@ -85,34 +85,36 @@ Natural Language processing nejdeme robiť
     -   [Parameters][15]
     -   [trie][16]
     -   [controlObjects][17]
--   [Trie][18]
-    -   [root][19]
-    -   [insert][20]
-        -   [Parameters][21]
-    -   [search][22]
+    -   [divideControlObjects][18]
+        -   [Parameters][19]
+-   [Trie][20]
+    -   [root][21]
+    -   [insert][22]
         -   [Parameters][23]
-    -   [delete][24]
+    -   [search][24]
         -   [Parameters][25]
-    -   [update][26]
+    -   [delete][26]
         -   [Parameters][27]
-    -   [getDataNode][28]
+    -   [update][28]
         -   [Parameters][29]
-    -   [getPath][30]
+    -   [getDataNode][30]
         -   [Parameters][31]
--   [TrieNode][32]
-    -   [Parameters][33]
-    -   [parent][34]
-    -   [children][35]
-    -   [update][36]
-        -   [Parameters][37]
-    -   [unlink][38]
-    -   [hasChildren][39]
-    -   [deleteChild][40]
-        -   [Parameters][41]
-    -   [addChild][42]
+    -   [getPath][32]
+        -   [Parameters][33]
+-   [TrieNode][34]
+    -   [Parameters][35]
+    -   [parent][36]
+    -   [children][37]
+    -   [update][38]
+        -   [Parameters][39]
+    -   [unlink][40]
+    -   [hasChildren][41]
+    -   [deleteChild][42]
         -   [Parameters][43]
-    -   [hasChild][44]
+    -   [addChild][44]
         -   [Parameters][45]
+    -   [hasChild][46]
+        -   [Parameters][47]
 
 ## VCL
 
@@ -129,7 +131,7 @@ Provides the isolation of what a library user can and where they should not be a
 
 ### Parameters
 
--   `config` **[Object][46]** SpeechApi configuration.
+-   `config` **[Object][48]** SpeechApi configuration.
 
 ### dictate
 
@@ -137,7 +139,7 @@ Calls the configured method
 
 ### result
 
-Returns **[Promise][47]** 
+Returns **[Promise][49]** 
 
 ### stop
 
@@ -151,7 +153,7 @@ and to use speech recognition as an input for forms, continuous dictation and co
 
 ### Parameters
 
--   `config` **[Object][46]** W3C Speech API configuration
+-   `config` **([Object][48] | null)** W3C Speech API configuration
 
 ### dictate
 
@@ -161,7 +163,7 @@ Begin to listen to the audio.
 
 Asynchronous function that return transcript result in text form.
 
-Returns **[Promise][47]&lt;[String][48]>** 
+Returns **[Promise][49]&lt;[String][50]>** 
 
 ### stop
 
@@ -169,21 +171,33 @@ Stop listening to more audio.
 
 ## ServiceObjects
 
+Services input configuration settings related to page elements and their properties.
+Phrases are indexed to the associated selector using the Trie class
+
 ### Parameters
 
--   `config`  
+-   `config` **[Object][48]** 
 
 ### trie
 
 Get Trie.
 
-Returns **[Trie][49]** 
+Returns **[Trie][51]** 
 
 ### controlObjects
 
-Get map all control objects
+Get map all control objects.
 
-Returns **[Map][50]** ControlObject
+Returns **[Map][52]** 
+
+### divideControlObjects
+
+In Map on key position set querySelector from configuration and as his value set instance of ControlObject with his attributes.
+Insert all phrases from the configuration into the trie that indexes to their querySelectors.
+
+#### Parameters
+
+-   `config` **[Object][48]** 
 
 ## Trie
 
@@ -193,7 +207,7 @@ Trie data structure.
 
 Get root node of the Trie
 
-Returns **[TrieNode][51]** 
+Returns **[TrieNode][53]** 
 
 ### insert
 
@@ -202,8 +216,8 @@ If data is not provided it is automatically generated as an increasing number.
 
 #### Parameters
 
--   `word` **[string][48]** 
--   `data` **[Object][46]?** 
+-   `word` **[string][50]** 
+-   `data` **[Object][48]?** 
 
 ### search
 
@@ -213,9 +227,9 @@ If the word is not found in the Trie null is returned.
 
 #### Parameters
 
--   `word` **[string][48]** 
+-   `word` **[string][50]** 
 
-Returns **([Object][46] | null)** 
+Returns **([Object][48] | null)** 
 
 ### delete
 
@@ -224,34 +238,34 @@ If the word is not in the Trie false is returned otherwise true.
 
 #### Parameters
 
--   `word` **[string][48]** 
+-   `word` **[string][50]** 
 
-Returns **[boolean][52]** 
+Returns **[boolean][54]** 
 
 ### update
 
 #### Parameters
 
--   `word` **[string][48]** 
+-   `word` **[string][50]** 
 -   `data` **any** 
 
-Returns **[boolean][52]** 
+Returns **[boolean][54]** 
 
 ### getDataNode
 
 #### Parameters
 
--   `word` **[string][48]** 
+-   `word` **[string][50]** 
 
-Returns **[TrieNode][51]** 
+Returns **[TrieNode][53]** 
 
 ### getPath
 
 #### Parameters
 
--   `word` **[string][48]** 
+-   `word` **[string][50]** 
 
-Returns **[Array][53]&lt;[TrieNode][51]>** 
+Returns **[Array][55]&lt;[TrieNode][53]>** 
 
 ## TrieNode
 
@@ -263,14 +277,14 @@ If the node is the end of a word it can contain some additional index data.
 
 ### Parameters
 
--   `parent` **[Object][46]** Parent config object (optional, default `{key:"",node:null}`)
--   `isRoot` **[boolean][52]?** Boolean flag of root node. If the node is root it is not check for parent (optional, default `false`)
+-   `parent` **[Object][48]** Parent config object (optional, default `{key:"",node:null}`)
+-   `isRoot` **[boolean][54]?** Boolean flag of root node. If the node is root it is not check for parent (optional, default `false`)
 
 ### parent
 
 Get parent object consisting of the child index and parent node.
 
-Returns **{key: [string][48], node: [TrieNode][51]}** 
+Returns **{key: [string][50], node: [TrieNode][53]}** 
 
 ### children
 
@@ -295,7 +309,7 @@ If this function is finished all reference to this node from the Trie root is lo
 
 Check if the node has any child nodes attached to it.
 
-Returns **[boolean][52]** True if has any children, otherwise false.
+Returns **[boolean][54]** True if has any children, otherwise false.
 
 ### deleteChild
 
@@ -305,7 +319,7 @@ If the child does exists, the child node object is deleted.
 
 #### Parameters
 
--   `char` **[string][48]** 
+-   `char` **[string][50]** 
 
 ### addChild
 
@@ -314,10 +328,10 @@ If a child already exists on the index it is overridden by the new child.
 
 #### Parameters
 
--   `char` **[string][48]** 
--   `node` **[TrieNode][51]** 
+-   `char` **[string][50]** 
+-   `node` **[TrieNode][53]** 
 
-Returns **([TrieNode][51] | null)** If a child is overridden the old child node is return, otherwise false.
+Returns **([TrieNode][53] | null)** If a child is overridden the old child node is return, otherwise false.
 
 ### hasChild
 
@@ -325,9 +339,9 @@ Check is the node has a child indexed by the provided character.
 
 #### Parameters
 
--   `char` **[string][48]** 
+-   `char` **[string][50]** 
 
-Returns **[boolean][52]** True if a child exists, otherwise false.
+Returns **[boolean][54]** True if a child exists, otherwise false.
 
 [1]: #vcl
 
@@ -363,75 +377,78 @@ Returns **[boolean][52]** True if a child exists, otherwise false.
 
 [17]: #controlobjects
 
-[18]: #trie-1
+[18]: #dividecontrolobjects
 
-[19]: #root
+[19]: #parameters-4
 
-[20]: #insert
+[20]: #trie-1
 
-[21]: #parameters-4
+[21]: #root
 
-[22]: #search
+[22]: #insert
 
 [23]: #parameters-5
 
-[24]: #delete
+[24]: #search
 
 [25]: #parameters-6
 
-[26]: #update
+[26]: #delete
 
 [27]: #parameters-7
 
-[28]: #getdatanode
+[28]: #update
 
 [29]: #parameters-8
 
-[30]: #getpath
+[30]: #getdatanode
 
 [31]: #parameters-9
 
-[32]: #trienode
+[32]: #getpath
 
 [33]: #parameters-10
 
-[34]: #parent
+[34]: #trienode
 
-[35]: #children
+[35]: #parameters-11
 
-[36]: #update-1
+[36]: #parent
 
-[37]: #parameters-11
+[37]: #children
 
-[38]: #unlink
+[38]: #update-1
 
-[39]: #haschildren
+[39]: #parameters-12
 
-[40]: #deletechild
+[40]: #unlink
 
-[41]: #parameters-12
+[41]: #haschildren
 
-[42]: #addchild
+[42]: #deletechild
 
 [43]: #parameters-13
 
-[44]: #haschild
+[44]: #addchild
 
 [45]: #parameters-14
 
-[46]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[46]: #haschild
 
-[47]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[47]: #parameters-15
 
-[48]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[48]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[49]: #trie
+[49]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[50]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map
+[50]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[51]: #trienode
+[51]: #trie
 
-[52]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[52]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map
 
-[53]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[53]: #trienode
 
+[54]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[55]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
