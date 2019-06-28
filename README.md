@@ -15,25 +15,33 @@
 - defaultné správanie pri rozpoznaní ale neexistuje mapovanie
 
 ```JS
-const voice = new VoiceControl({
-    "<querySelector>": {
-      phrases: [],
-      listener: event => {
-        event.element.innerHtml = event.result;
-      },
-      actions: {
-        click: true,
-        mouseover: event => {
-          if(event.element.innerHtml == "prd")
-            return false;
-          return true;
+const vcl = new VCL({
+    "#btn": {
+        phrases: ['klikni na gombík', 'klikni na button',
+            'klikni na tlačítko', 'stlač button', 'stlač tlačidlo'],
+        listener: event => {
+            event.element.innerText = event.result;
+        },
+        actions: {
+            click: true,
+            mouseover: event => {
+                return (event.element.innerText === "Button");
+            }
         }
-      }
+    },
+    global: {
+        speechApi: {
+            W3C: {
+                lang: 'sk-SK',
+                continuous: false,
+                maxAlternatives: 1
+            },
+            GoogleCloudApi: {},
+            debug: true
+        },
     }
-  })
+});
 ```
-
-`$("p").on("click", event => console.log("click event"));`
 
 ## Workflow
 example: "Choď domov a otvor prvý link"
