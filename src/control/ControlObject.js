@@ -1,3 +1,6 @@
+/**
+ *
+ */
 export default class ControlObject {
     constructor(querySelector, controlElementValue) {
         this.querySelector = querySelector;

@@ -1,13 +1,22 @@
 import TrieNode from "./TrieNode.js";
 
+/**
+ * Trie data structure.
+ */
 export default class Trie {
 
-
+    /**
+     * @constructor
+     */
     constructor() {
-        this._root = new TrieNode();
+        this._root = new TrieNode(null, true);
         this._lastIndex = 1;
     }
 
+    /**
+     * Get root node of the Trie
+     * @returns {TrieNode}
+     */
     get root() {
         return this._root;
     }
@@ -39,7 +48,7 @@ export default class Trie {
 
         let c = word.charAt(wordIndex);
         if (!currentNode.hasChild(c)) {
-            currentNode.addChild(c, new TrieNode(currentNode, c))
+            currentNode.addChild(c, new TrieNode({key: c, node: currentNode}))
         }
         return this._insertWord(word, data, currentNode.children[c], wordIndex + 1);
     }
@@ -94,6 +103,11 @@ export default class Trie {
         return true;
     }
 
+    /**
+     *
+     * @param {TrieNode} currentNode
+     * @private
+     */
     _deleteWord(currentNode) {
         if (currentNode === this._root)
             return;
@@ -107,6 +121,12 @@ export default class Trie {
         this._deleteWord(parent.node);
     }
 
+    /**
+     *
+     * @param {string} word
+     * @param {*} data
+     * @returns {boolean}
+     */
     update(word, data) {
         const node = this._searchNode(word, this._root, 0);
         if (!node)
@@ -116,10 +136,20 @@ export default class Trie {
         return true;
     }
 
+    /**
+     *
+     * @param {string} word
+     * @returns {TrieNode}
+     */
     getDataNode(word) {
         return this._searchNode(word, this._root, 0);
     }
 
+    /**
+     *
+     * @param {string} word
+     * @returns {Array<TrieNode>}
+     */
     getPath(word) {
         const path = [];
         path.push(this._root);
@@ -131,6 +161,11 @@ export default class Trie {
         return path;
     }
 
+    /**
+     *
+     * @returns {number}
+     * @private
+     */
     _getNextIndex() {
         return this._lastIndex++;
     }
