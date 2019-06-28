@@ -1,0 +1,45 @@
+{
+  "name": "voice-control-library",
+  "version": "1.0.0",
+  "description": "Library to customize control over web via W3C Speech API",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start",
+    "doc": "npm run doc:lint && npm run doc:md & npm run doc:html",
+    "doc:lint": "documentation lint src/index.js",
+    "doc:md": "documentation build src/index.js -f md -o dist/doc/md",
+    "doc:html": "documentation build src/index.js -f html -o dist/doc/html",
+    "build": "webpack --progress --color",
+    "run": "webpack-dev-server --open --color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.interes.group/vanik.daniel/voice-control-library.git"
+  },
+  "keywords": [
+    "speech",
+    "voice",
+    "control",
+    "voice control"
+  ],
+  "author": "Daniel Vaník <vanik.daniel97@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "documentation": "^11.0.1",
+    "jasmine-core": "^3.4.0",
+    "karma": "^4.1.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.2",
+    "karma-jasmine": "^2.0.1",
+    "karma-jasmine-html-reporter": "^1.4.2",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-webpack": "^4.0.2",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
