@@ -32,7 +32,7 @@ export default class SpeechApi {
     }
 
     /**
-     * Calls the configured method
+     * Calls the configured function
      */
     dictate() {
         this._speechApi.dictate();
@@ -47,7 +47,7 @@ export default class SpeechApi {
     }
 
     /**
-     * Calls the configured method
+     * Calls the configured function
      */
     stop() {
         this._speechApi.stop();

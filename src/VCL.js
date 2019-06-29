@@ -3,10 +3,23 @@ import ServiceObjects from "./control/ServiceObjects";
 import Runner from "./control/Runner";
 
 /**
- * @class
+ * -----------------------------------------------------------------------
+ * --------------------  Voice Control Library (VCL)  --------------------
+ * -----------------------------------------------------------------------
+ *
+ * Web application interface in the form of a library for controlling web content via voice commands.
+ * Only after a proper voice command from the end user, which must be sequential and distinct for its adequate recognition, can the library handle page content.
+ * VCL uses W3C speech api for voice recognition to text form.
+ *
+ * The VCL class is at the core of the entire library that handles execution controlling web content via voice commands.
  */
 export default class VCL {
 
+    /**
+     * Moves the configuration to the next implemented package as control for service and api for speech recognition settings.
+     * Set debug mode. Listening on key down shortcut Ctrl + Shift + V and then start library.
+     * @param {Object} config Can be object, JSON, or external file with object structure. Must contains global part configuration and also at least one querySelector with his properties.
+     */
     constructor(config) {
         this._speechApi = new SpeechApi(this._setApiConfig(config));
         this._serviceObjects = new ServiceObjects(this._setServiceObjectsConfig(config));
@@ -19,6 +32,12 @@ export default class VCL {
         });
     }
 
+    /**
+     *
+     * @param {Object} config
+     * @returns {Object}
+     * @private
+     */
     _setApiConfig(config) {
         if (typeof config === 'object' && config.global && config.global.speechApi) {
             return config.global.speechApi;
@@ -27,6 +46,12 @@ export default class VCL {
         }
     }
 
+    /**
+     *
+     * @param config
+     * @returns {Object}
+     * @private
+     */
     _setServiceObjectsConfig(config) {
         if (typeof config === 'object') {
             return config;
@@ -36,7 +61,13 @@ export default class VCL {
     }
 
     /**
-     * @memberof VCL#
+     * The only user-accessible function.
+     * I. Starts recording audio.
+     * II. On result from speech API
+     *      1. If set debug mode, allow write in web browser console.
+     *      2. Search query selector assigned to HTMLElement on page by matching speech recognition and indexed phrases.
+     *      3. Start executing listener and actions functions.
+     *      4. Stop recording audio.
      */
     execute() {
         this._speechApi.dictate();
@@ -55,6 +86,12 @@ export default class VCL {
             });
     }
 
+    /**
+     *
+     * @param {string} recognizeResult
+     * @returns {String}
+     * @private
+     */
     _searchSelector(recognizeResult) {
         const modifiers = [phrase => phrase, phrase => phrase.toLowerCase(), phrase => phrase.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()];
         let recognizeSelector = undefined;

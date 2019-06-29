@@ -37,7 +37,7 @@ export default class VCLEvent {
 
     /**
      * Get HTMLElement
-     * @returns {HTMLElement}
+     * @returns {Element}
      */
     get element() {
         return this._controlObject.domElement;
@@ -58,7 +58,4 @@ export default class VCLEvent {
     get listener() {
         return this._controlObject.listener;
     }
-
-
-
 }
