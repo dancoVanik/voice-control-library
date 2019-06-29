@@ -1,7 +1,21 @@
 # Voice Control Library
+Web application interface in the form of a library for controlling web content via voice commands. Only after a proper voice command from the end user, which must be sequential and distinct for its adequate recognition, can the library handle page content. VCL uses W3C speech api for voice recognition to text form.
 
 ## Funkcionality
-Web application interface in the form of a library for controlling web content via voice commands. Only after a proper voice command from the end user, which must be sequential and distinct for its adequate recognition, can the library handle page content
+ The main advantage library is simple implementation new and creative functions that improve work on the internet.
+### API
+You can choose :
+- from 120 human language
+- debug mode
+- continuous recording voice
+- count of maximal alternatives recognize result
+### Client
+You can implement :
+- query selectors corresponding to elements on the page
+- phrases by which will be unique on what functionality goes and which element are set
+- listener can be implemented or not
+ - if is set, execute first
+- actions various charater that executes only if return value is true 
 
 ## Configuration example
 ```JS
