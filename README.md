@@ -3,6 +3,9 @@ Web application interface in the form of a library for controlling web content v
 
 ## Funkcionality
  The main advantage library is simple implementation new and creative functions that improve work on the internet.
+ Library is fully available on Google Chrome browser.
+ 
+ Check your web browser can to use this library on : https://whatwebcando.today/speech-recognition.html
  
  Library you can turn on : 
  ```JS
@@ -12,7 +15,7 @@ or the keyboard shortcut ```Ctrl + Shift + V```
 ### API
 You can choose :
 - from 120 human language
-- debug mode
+- debug mode in web browser console
 - continuous recording voice
 - count of maximal alternatives recognize result
 ### Client
