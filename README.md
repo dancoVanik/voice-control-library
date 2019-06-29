@@ -146,12 +146,14 @@ The VCL class is at the core of the entire library that handles execution contro
 ### execute
 
 The only user-accessible function.
+
 I. Starts recording audio.
-II. On result from speech API
-     1\. If set debug mode, allow write in web browser console.
-     2\. Search query selector assigned to HTMLElement on page by matching speech recognition and indexed phrases.
-     3\. Start executing listener and actions functions.
-     4\. Stop recording audio.
+
+II. On result from speech API    
+     1. If set debug mode, allow write in web browser console.
+     2. Search query selector assigned to HTMLElement on page by matching speech recognition and indexed phrases.  
+     3. Start executing listener and actions functions.    
+     4. Stop recording audio.
 
 ## SpeechApi
 
