@@ -3,6 +3,12 @@ Web application interface in the form of a library for controlling web content v
 
 ## Funkcionality
  The main advantage library is simple implementation new and creative functions that improve work on the internet.
+ 
+ Library you can turn on : 
+ ```JS
+ vcl.execute();
+ ```
+or the keyboard shortcut ```Ctrl + Shift + V```
 ### API
 You can choose :
 - from 120 human language
