@@ -1,7 +1,7 @@
 # Voice Control Library
 Web application interface in the form of a library for controlling web content via voice commands. Only after a proper voice command from the end user, which must be sequential and distinct for its adequate recognition, can the library handle page content. VCL uses W3C speech api for voice recognition to text form.
 
-## Funkcionality
+## Functionality
  The main advantage library is simple implementation new and creative functions that improve work on the internet.
  Library is fully available on Google Chrome browser.
  
