@@ -14,7 +14,7 @@ You can implement :
 - query selectors corresponding to elements on the page
 - phrases by which will be unique on what functionality goes and which element are set
 - listener can be implemented or not
-  -- if is set, execute first
+  - if is set, execute first
 - actions various charater that executes only if return value is true 
 
 ## Configuration example
